@@ -1,0 +1,12 @@
+.body{
+    display: flex;
+    justify-content: center;
+    min-height: 30em;
+}
+
+.todo-panel{
+    border:1px solid #eee;
+    box-shadow:4px 6px 6px #888;
+    width :30em;
+    margin-top: 5em;
+}
