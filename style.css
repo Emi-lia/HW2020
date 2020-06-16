@@ -4,23 +4,67 @@ body{
 }
 
 .todo-panel{
-    box-shadow: 4px 4px 17px 0px;
+    
     width: 30em;
-    border: 1px solid #eee;
     min-height: 20em;
+    margin-top: 5em;
+    
+    border: 1px solid #eee;
+    box-shadow: 4px 4px 17px 0px;
 
 }
+
 .todo-editor{
-    width: 21em;
-    height: 20px;
-    border: 1px solid grey;
-    margin-left: 60px;
-    margin-top: 5px;
-
+    padding: 5px 20px;
+    display: flex;
 }
-.botton{
-    width: 19px;
-    height :18px;
-    border: 2px solid hotpink;
-    margin-left: 312px;
+
+.todo-editor input{
+    flex-grow: 1;
+    font-size: 1.2em;
+    padding: 2px 5px;
+}
+todo-items {
+    padding: 5px 20px; 
+}
+
+.todo-items > .task {
+    display: flex;
+    align-items: center;
+}
+
+.todo-items > .task >input {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+
+.todo-items > .task >label {
+    flex-grow: 1;
+}
+
+.todo-items .ctrlbar > button {
+     border: none;
+     background:none;
+     color: blue;
+     cursor: pointer;
+}
+
+
+.todo-items .ctrlbar > button:disabled {
+     color:grey;
+    /*cursor: pointer; */
+}
+
+.todo-items .ctrlbar > button:disabled:hover {
+    font-weight:unset;
+}
+
+.todo-items .ctrlbar > button:hover{
+    font-weight: bolder;
+} 
+
+
+.task.done > label {
+    text-decoration: line-through;
 }
