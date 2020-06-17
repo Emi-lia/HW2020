@@ -12,7 +12,7 @@ function renderEditor() {
         let newTask = {
             title: inputEl.value,
             done: false,
-            important:false,
+            import: false,
         };
         inputEl.value = "";
         tasks.push(newTask);
@@ -42,6 +42,7 @@ function renderTaskItems() {
         let task = tasks[i];
         let itemEl = document.createElement("div");
         itemEl.className = "task";
+        //事项完成
         let doneEl = document.createElement("input");
         doneEl.type = "checkbox";
         doneEl.checked = task.done;
@@ -52,7 +53,6 @@ function renderTaskItems() {
         }
         doneEl.onchange = (e) => {
             task.done = e.target.checked;
-            //console.log("checkbox",e);
             if (task.done) {
                 itemEl.classList.add("done");
             } else {
@@ -60,12 +60,31 @@ function renderTaskItems() {
             }
         }
         itemEl.append(doneEl);
+        //获取title
         let titleEl = document.createElement("label");
         titleEl.innerText = task.title;
         itemEl.append(titleEl);
         let ctrlbarEl = renderTaskCtrlBar(tasks, i);
         itemEl.append(ctrlbarEl);
         itemsEl.append(itemEl);
+        //重要程度
+        let impEl = document.querySelectorAll(".ctrlbar input")[i];
+        impEl.checked = task.import;
+        if (task.import) {
+            itemEl.classList.add("import");
+        }
+        else {
+            itemEl.classList.remove("import");
+        }
+        impEl.onchange = (e) => {
+            task.import = e.target.checked;
+            if (task.import) {
+                itemEl.classList.add("import");
+            }
+            else {
+                itemEl.classList.remove("import");
+            }
+        }
     }
 }
 
@@ -74,23 +93,34 @@ function renderTaskItems() {
 function renderTaskCtrlBar(tasks, taskIdx) {
     let ctrlbarEl = document.createElement("div");
     ctrlbarEl.className = "ctrlbar";
+    //重要程度按钮
+    let impEl = document.createElement("input");
+    impEl.type = "checkbox";
+    ctrlbarEl.append(impEl);
+    //上移按钮
     let upEl = document.createElement("button");
     if (taskIdx ===0){
         upEl.disabled = true;
     }
     upEl.innerText = "↑";
     upEl.onclick = () => {
-
+        let t=tasks[taskIdx];
+        tasks[taskIdx]=tasks[taskIdx-1];
+        tasks[taskIdx-1]=t;
+        renderTaskItems();
     };
     ctrlbarEl.append(upEl);
-
+    //下移按钮
     let downEl = document.createElement("button");
     downEl.innerText = "↓";
     downEl.onclick = () => {
-
+        let t=tasks[taskIdx];
+        tasks[taskIdx]=tasks[taskIdx+1];
+        tasks[taskIdx+1]=t;
+        renderTaskItems();
     };
     ctrlbarEl.append(downEl);
-
+    //删除按钮
     let cancelEl = document.createElement("button");
     cancelEl.innerText = "X";
     cancelEl.onclick = () => {
