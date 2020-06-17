@@ -133,5 +133,6 @@ function renderTaskCtrlBar(tasks, taskIdx) {
     return ctrlbarEl;
 }
 
+
 renderEditor();
 renderTaskItems();

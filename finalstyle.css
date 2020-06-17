@@ -5,7 +5,7 @@ body{
 
 .todo-panel{
     width:30em;
-    border:1px solid #eee ;
+    border:1px solid #d9d4d4 ;
     min-height: 20em;
 
     box-shadow: 4px 6px 6px #888;
@@ -39,12 +39,13 @@ body{
 
 .todo-items > .task > label{
     flex-grow: 1;
+    font-family: "楷体";
 }
 
 .todo-items .ctrlbar > button{
     border: none;
     background: none;
-    color: aqua;
+    color: black;
     cursor: pointer;
 }
 
@@ -69,7 +70,8 @@ body{
     font-size: 1.5em;
     text-align: center;
 }
+
 .task.import >label{
-    color: red;
-    font-size: 2em;
+    color: #f26969;
+    font-size: 1.5em;
 }
