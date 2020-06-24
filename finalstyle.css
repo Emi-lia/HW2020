@@ -5,11 +5,7 @@ body{
 
 .todo-panel{
     width:40em;
-//    border:1px solid brown ;
     min-height: 40em;
-
-//    box-shadow: 4px 6px 6px #888;
-
     margin-top: 5em;
 }
 
@@ -90,7 +86,10 @@ border-collapse: collapse;
     text-align: center;
 }
 
-.task.import >label{
-    color: #f26969;
-    font-size: 1.5em;
+.todo-items .ctrlbar > div{
+    display: inline;
+}
+
+.todo-items .ctrlbar > div > button{
+    border-style: hidden;
 }

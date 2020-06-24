@@ -76,23 +76,34 @@ function renderTaskItems() {
         itemEl.append(ctrlbarEl);
         itemsEl.append(itemEl);
         //创建重要程度元素
-        let impEl = document.querySelectorAll(".ctrlbar input")[i];
-        impEl.checked = task.import;
-        if (task.import) {
-            itemEl.classList.add("import");
+        let importantEl = document.querySelectorAll(".ctrlbar div")[i];
+        let imp1El = document.createElement("button");
+        let imp2El = document.createElement("button");
+        let imp3El = document.createElement("button");
+        imp1El.innerText = "☆";
+        imp1El.onclick = () => {
+            imp1El.innerText = "★";
+        };
+        imp1El.oncontextmenu = () => {
+            imp1El.innerText = "☆"
         }
-        else {
-            itemEl.classList.remove("import");
+        imp2El.innerText = "☆";
+        imp2El.onclick = () => {
+            imp2El.innerText = "★";
+        };
+        imp2El.oncontextmenu = () => {
+            imp2El.innerText = "☆"
         }
-        impEl.onchange = (e) => {
-            task.import = e.target.checked;
-            if (task.import) {
-                itemEl.classList.add("import");
-            }
-            else {
-                itemEl.classList.remove("import");
-            }
+        imp3El.innerText = "☆";
+        imp3El.onclick = () => {
+            imp3El.innerText = "★";
+        };
+        imp3El.oncontextmenu = () => {
+            imp3El.innerText = "☆"
         }
+        importantEl.append(imp1El);
+        importantEl.append(imp2El);
+        importantEl.append(imp3El);
     }
 }
 
@@ -101,10 +112,10 @@ function renderTaskItems() {
 function renderTaskCtrlBar(tasks, taskIdx) {
     let ctrlbarEl = document.createElement("div");
     ctrlbarEl.className = "ctrlbar";
-    //重要程度按钮
-    let impEl = document.createElement("input");
-    impEl.type = "checkbox";
-    ctrlbarEl.append(impEl);
+    //星级重要性
+    let importantEl = document.createElement("div");
+    importantEl.type = "checkbox";
+    ctrlbarEl.append(importantEl);
     //上移按钮
     let upEl = document.createElement("button");
     if (taskIdx === 0) {
