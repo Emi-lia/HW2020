@@ -20,7 +20,9 @@ function renderEditor() {
             title: inputEl.value,
             dl: deadlineEl.value,
             done: false,
-            import: false,
+            important1: false,
+            important2: false,
+            important3: false,
         };
         inputEl.value = "";
         deadlineEl.value = "";
@@ -77,29 +79,47 @@ function renderTaskItems() {
         itemsEl.append(itemEl);
         //创建重要程度元素
         let importantEl = document.querySelectorAll(".ctrlbar div")[i];
-        let imp1El = document.createElement("button");
-        let imp2El = document.createElement("button");
-        let imp3El = document.createElement("button");
-        imp1El.innerText = "☆";
+        let imp1El = document.createElement("button");        
+        if(task.important1 === false){
+            imp1El.innerText = "☆";
+        } else if(task.important1 === true){
+            imp1El.innerText = "★"
+        } 
         imp1El.onclick = () => {
             imp1El.innerText = "★";
-        };
+            task.important1 = true;
+        }      
         imp1El.oncontextmenu = () => {
-            imp1El.innerText = "☆"
+            imp1El.innerText = "☆";
+            task.important1 = false;
         }
-        imp2El.innerText = "☆";
+        let imp2El = document.createElement("button");
+        if(task.important2 === false){
+            imp2El.innerText = "☆";
+        }else if(task.important2 === true){
+            imp2El.innerText = "★";
+        }
         imp2El.onclick = () => {
             imp2El.innerText = "★";
-        };
-        imp2El.oncontextmenu = () => {
-            imp2El.innerText = "☆"
+            task.important2 = true;
         }
-        imp3El.innerText = "☆";
+        imp2El.oncontextmenu = () => {
+            imp2El.innerText = "☆";
+            task.important2 = false;
+        }
+        let imp3El = document.createElement("button");
+        if(task.important3 === false){
+            imp3El.innerText = "☆";
+        }else if(task.important3 === true){
+            imp3El.innerText = "★";
+        }
         imp3El.onclick = () => {
             imp3El.innerText = "★";
-        };
+            task.important3 = true;
+        }
         imp3El.oncontextmenu = () => {
-            imp3El.innerText = "☆"
+            imp3El.innerText = "☆";
+            task.important3 = false;
         }
         importantEl.append(imp1El);
         importantEl.append(imp2El);
@@ -114,7 +134,6 @@ function renderTaskCtrlBar(tasks, taskIdx) {
     ctrlbarEl.className = "ctrlbar";
     //星级重要性
     let importantEl = document.createElement("div");
-    importantEl.type = "checkbox";
     ctrlbarEl.append(importantEl);
     //上移按钮
     let upEl = document.createElement("button");
