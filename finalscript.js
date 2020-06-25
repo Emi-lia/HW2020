@@ -1,3 +1,5 @@
+//这是最终版本！
+
 
 let tasks = [];//创建一个tasks数组
 
@@ -77,7 +79,7 @@ function renderTaskItems() {
         let ctrlbarEl = renderTaskCtrlBar(tasks, i);
         itemEl.append(ctrlbarEl);
         itemsEl.append(itemEl);
-        //创建重要程度元素
+        //创建重要程度元素（点黑的星星越多表示越重要，鼠标单击点黑星星，鼠标右键撤销点击）
         let importantEl = document.querySelectorAll(".ctrlbar div")[i];
         let imp1El = document.createElement("button");        
         if(task.important1 === false){
@@ -168,9 +170,6 @@ function renderTaskCtrlBar(tasks, taskIdx) {
         tasks.splice(taskIdx, 1);
         renderTaskItems();
     };
-
-
-
     ctrlbarEl.append(cancelEl);
 
     return ctrlbarEl;
